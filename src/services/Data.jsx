@@ -111,3 +111,14 @@ const PIANO = [
     url: "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3",
   },
 ];
+
+export const getData = () => {
+  return new Promise((resolve, reject) => {
+    try {
+      resolve(DRUMS);
+    } catch (err) {
+      reject(err);
+      console.log(err);
+    }
+  });
+};
