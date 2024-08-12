@@ -44,7 +44,7 @@ export const DrumPad = ({ text, url,id }) => {
 
   return (
     <div
-      className={` flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md  hover:shadow-orange-400 hover:bg-emerald-700 ${isPress ? pressBtnStyle : "bg-gray-600 shadow-slate-950"} `} 
+      className={` flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md  hover:shadow-amber-500 hover:bg-emerald-700 ${isPress ? pressBtnStyle : "bg-gray-600 shadow-slate-950"} `} 
       onClick={handleClick} 
     >
       {text} <audio ref={audioRef} src={url} ></audio>

@@ -4,10 +4,12 @@ import { Display } from "./Display";
 import { Power } from "./Power";
 import { Footer } from "./Footer";
 import { getData } from "../services/Data";
+import { PowerContext } from "./Context/PowerContext";
+import { useContext } from "react";
 
 export const DrumsMachine = () => {
   const [url, setUrl] = useState(null);
-
+  const {isOn} = useContext(PowerContext)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,6 +28,7 @@ export const DrumsMachine = () => {
     <div className="box-border h-auto min-w-sm md:max-w- p-6 border-black border-2 rounded-3xl bg-zinc-100">
       <div className="grid grid-flow-row md:grid-flow-col gap-3">
         <div className="grid auto-cols-min grid-cols-3 justify-self-center gap-2">
+
           {url &&
             url.map((info) => (
               <DrumPad
