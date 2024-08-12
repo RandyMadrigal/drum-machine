@@ -32,6 +32,7 @@ export const DrumsMachine = () => {
                 key={info.keyTrigger}
                 text={info.keyTrigger}
                 url={info.url}
+                id={info.id}
               />
             ))}
         </div>

@@ -1,9 +1,13 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
+import { useContext } from "react";
+import { IdContext } from "./Context/IdContext";
 
-export const DrumPad = ({ text, url }) => {
+export const DrumPad = ({ text, url,id }) => {
   const audioRef = useRef(null);
   const [isPress, setIsPress] = useState(false)
+  const {setIdDisplay} = useContext(IdContext)
+
 
   const pressBtnStyle = "shadow-orange-400 bg-emerald-700"
 
@@ -11,9 +15,9 @@ export const DrumPad = ({ text, url }) => {
     const handleOnKeyDown = (e) => {
       if(text.toUpperCase() ===  e.key.toUpperCase()){
         setIsPress(true)
+        setIdDisplay(id)
         audioRef.current.currentTime = 0
         audioRef.current.play()
-       
       }
     };
     
@@ -34,15 +38,14 @@ export const DrumPad = ({ text, url }) => {
 
   const handleClick = () => {
     audioRef.current.currentTime = 0;
+    setIdDisplay(id)
     audioRef.current.play()
   };
 
   return (
     <div
       className={` flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md  hover:shadow-orange-400 hover:bg-emerald-700 ${isPress ? pressBtnStyle : "bg-gray-600 shadow-slate-950"} `} 
-      tabIndex="0"
-      onClick={handleClick}
-      
+      onClick={handleClick} 
     >
       {text} <audio ref={audioRef} src={url} ></audio>
     </div>
@@ -52,4 +55,5 @@ export const DrumPad = ({ text, url }) => {
 DrumPad.propTypes = {
   text: PropTypes.string.isRequired,
   url: PropTypes.string,
+  id: PropTypes.string,
 };
