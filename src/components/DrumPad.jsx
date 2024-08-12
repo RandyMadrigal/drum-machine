@@ -14,12 +14,13 @@ export const DrumPad = ({ text, url }) => {
 
   return (
     <div
-      className="bg-gray-600 flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md shadow-slate-950 hover:shadow-orange-400"
+      className="bg-gray-600 flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md shadow-slate-950 hover:shadow-orange-400 hover:bg-cyan-700"
       tabIndex="0"
       onClick={handleClick}
     >
       {text} <audio name={text} ref={audioRef} src={url} autoPlay></audio>
     </div>
+   
   );
 };
 
