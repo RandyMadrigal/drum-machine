@@ -1,32 +1,29 @@
 import PropTypes from "prop-types";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
-export const DrumPad = ({ text, handleClick, handleKeyPress }) => {
-  const btn = useRef(null);
+export const DrumPad = ({ text, url }) => {
+  const audioRef = useRef(null);
 
-  useEffect(() => {
-    if (btn.current) {
-      btn.current.focus();
-    }
-  }, []);
+  const handleClick = () => {
+    audioRef.current.play();
+  };
+
+  const handleOnKeyDown = () => {
+    //TODO
+  };
 
   return (
-    <>
-      <button
-        ref={btn}
-        name={text}
-        onClick={handleClick}
-        onKeyDown={handleKeyPress}
-        className="bg-gray-600 rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md shadow-slate-950 hover:shadow-orange-400"
-      >
-        {text}
-      </button>
-    </>
+    <div
+      className="bg-gray-600 flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md shadow-slate-950 hover:shadow-orange-400"
+      tabIndex="0"
+      onClick={handleClick}
+    >
+      {text} <audio name={text} ref={audioRef} src={url} autoPlay></audio>
+    </div>
   );
 };
 
 DrumPad.propTypes = {
   text: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  handleKeyPress: PropTypes.func.isRequired,
+  url: PropTypes.string,
 };
