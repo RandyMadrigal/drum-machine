@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { DrumPad } from "./DrumPad";
 import { Display } from "./Display";
 import { Power } from "./Power";
-import { TypeSound } from "./TypeSound";
 import { Footer } from "./Footer";
 import { getData } from "../services/Data";
 
