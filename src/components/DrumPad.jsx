@@ -1,32 +1,62 @@
 import PropTypes from "prop-types";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useContext } from "react";
+import { IdContext } from "./Context/IdContext";
+import { PowerContext } from "./Context/PowerContext";
 
-export const DrumPad = ({ text, handleClick, handleKeyPress }) => {
-  const btn = useRef(null);
+export const DrumPad = ({ text, url, id }) => {
+  const audioRef = useRef(null);
+  const [isPress, setIsPress] = useState(false);
+  const { setIdDisplay } = useContext(IdContext);
+  const { isOn } = useContext(PowerContext);
+
+  const pressBtnStyle = "shadow-orange-400 bg-emerald-700";
 
   useEffect(() => {
-    if (btn.current) {
-      btn.current.focus();
-    }
-  }, []);
+    const handleOnKeyDown = (e) => {
+      if (text.toUpperCase() === e.key.toUpperCase()) {
+        setIsPress(true);
+        setIdDisplay(id);
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+      }
+    };
+
+    const handleOnKeyUp = (e) => {
+      if (text.toUpperCase() === e.key.toUpperCase()) {
+        setIsPress(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleOnKeyDown);
+    window.addEventListener("keyup", handleOnKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleOnKeyDown);
+      window.removeEventListener("keyup", handleOnKeyUp);
+    };
+  }, [id, setIdDisplay, text]);
+
+  const handleClick = () => {
+    audioRef.current.currentTime = 0;
+    setIdDisplay(id);
+    audioRef.current.play();
+  };
 
   return (
-    <>
-      <button
-        ref={btn}
-        name={text}
-        onClick={handleClick}
-        onKeyDown={handleKeyPress}
-        className="bg-gray-600 rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md shadow-slate-950 hover:shadow-orange-400"
-      >
-        {text}
-      </button>
-    </>
+    <div
+      className={` flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md  hover:shadow-amber-500 hover:bg-emerald-700 ${
+        isPress ? pressBtnStyle : "bg-gray-600 shadow-slate-950"
+      } `}
+      onClick={handleClick}
+    >
+      {text} <audio ref={audioRef} src={url} muted={!isOn}></audio>
+    </div>
   );
 };
 
 DrumPad.propTypes = {
   text: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  handleKeyPress: PropTypes.func.isRequired,
+  url: PropTypes.string,
+  id: PropTypes.string,
 };
