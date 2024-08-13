@@ -10,7 +10,7 @@ export const DrumPad = ({ text, url, id }) => {
   const { setIdDisplay } = useContext(IdContext);
   const { isOn } = useContext(PowerContext);
 
-  const pressBtnStyle = "shadow-orange-400 bg-emerald-700";
+  const pressBtnStyle = "shadow-black bg-amber-500 text-black";
 
   useEffect(() => {
     const handleOnKeyDown = (e) => {
@@ -45,7 +45,7 @@ export const DrumPad = ({ text, url, id }) => {
 
   return (
     <div
-      className={` flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md  hover:shadow-amber-500 hover:bg-emerald-700 ${
+      className={` flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md  hover:shadow-black hover:bg-amber-500 hover:text-black ${
         isPress ? pressBtnStyle : "bg-gray-600 shadow-slate-950"
       } `}
       onClick={handleClick}

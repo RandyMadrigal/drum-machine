@@ -15,8 +15,8 @@ export const Power = () => {
         onClick={handleClick}
         className={`${
           isOn
-            ? "bg-red-700 hover:shadow-md hover:shadow-amber-500"
-            : "bg-green-700 hover:shadow-md hover:shadow-amber-500"
+            ? "bg-red-700 hover:shadow-md hover:shadow-black"
+            : "bg-green-700 hover:shadow-md hover:shadow-black"
         }  text-white uppercase p-3 rounded-lg `}
       >
         {isOn ? "Off" : "On"}

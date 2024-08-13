@@ -10,7 +10,7 @@ function App() {
   const [selectSound, setSelectSound] = useState("DRUMS");
 
   return (
-    <div className="flex flex-col justify-center items-center mx-auto h-screen bg-gradient-to-r from-neutral-300 to-stone-400">
+    <div className="flex flex-col justify-center items-center mx-auto h-screen bg-gradient-to-r from-slate-800 to-slate-700">
       <TypeSoundContext.Provider value={{ selectSound, setSelectSound }}>
         <PowerContext.Provider value={{ isOn, setIsOn }}>
           <IdContext.Provider value={{ IdDisplay, setIdDisplay }}>
