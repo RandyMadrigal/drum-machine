@@ -45,12 +45,20 @@ export const DrumPad = ({ text, url, id }) => {
 
   return (
     <div
-      className={` flex justify-center items-center rounded-2xl w-20 h-20 font-bold text-white uppercase shadow-md  hover:shadow-black hover:bg-amber-500 hover:text-black ${
+      id="text"
+      className={`drum-pad flex justify-center items-center rounded-2xl w-20 h-20 md:w-20 md:h-20 font-bold text-white uppercase shadow-md  hover:shadow-black hover:bg-amber-500 hover:text-black ${
         isPress ? pressBtnStyle : "bg-gray-600 shadow-slate-950"
       } `}
       onClick={handleClick}
     >
-      {text} <audio ref={audioRef} src={url} muted={!isOn}></audio>
+      {text}
+      <audio
+        id={text}
+        className="clip"
+        ref={audioRef}
+        src={url}
+        muted={!isOn}
+      ></audio>
     </div>
   );
 };

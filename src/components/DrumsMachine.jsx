@@ -3,6 +3,7 @@ import { DrumPad } from "./DrumPad";
 import { Display } from "./Display";
 import { TypeSound } from "./TypeSound";
 import { Power } from "./Power";
+import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { getData } from "../services/Data";
 import { useContext } from "react";
@@ -27,7 +28,11 @@ export const DrumsMachine = () => {
 
   return (
     <>
-      <div className="box-border h-auto min-w-sm md:max-w- p-6 border-black border-2 rounded-3xl bg-stone-200 shadow-lg shadow-black">
+      <Header />
+      <div
+        id="drum-machine"
+        className="box-border h-auto min-w-sm md:max-w- p-6 border-black border-2 rounded-3xl bg-stone-200 shadow-lg shadow-black"
+      >
         <div className="grid grid-flow-row md:grid-flow-col gap-3">
           <div className="grid auto-cols-min grid-cols-3 justify-self-center gap-2">
             {url &&
